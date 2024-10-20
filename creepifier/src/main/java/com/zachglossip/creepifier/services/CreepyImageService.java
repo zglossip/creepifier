@@ -26,7 +26,7 @@ public class CreepyImageService {
             Predicate<CreepyImageConfig> p = entry.getKey();
             CreepyImageEdit e = entry.getValue();
             if (p.test(config)) {
-                edited = e.edit(edited);
+                edited = e.edit(edited, config.leftEye(), config.rightEye());
             }
         }
 

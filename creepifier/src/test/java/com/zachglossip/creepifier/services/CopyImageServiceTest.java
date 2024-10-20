@@ -31,7 +31,7 @@ public class CopyImageServiceTest {
 
     @BeforeEach
     void setUp() {
-        when(redEyeMock.edit(any())).thenReturn(testImage);
+        when(redEyeMock.edit(any(), any(), any())).thenReturn(testImage);
 
         Map<Predicate<CreepyImageConfig>, CreepyImageEdit> imageEdits = new HashMap<>();
         imageEdits.put(CreepyImageConfig::redEye, redEyeMock);
@@ -45,8 +45,12 @@ public class CopyImageServiceTest {
         //Given a test image
         BufferedImage startingImage = new BufferedImage(9, 8, 7);
 
+        // and test eyes
+        Integer leftEye = 1;
+        Integer rightEye = null;
+
         // and a test config
-        CreepyImageConfig config = new CreepyImageConfig(true, false);
+        CreepyImageConfig config = new CreepyImageConfig(true, false, leftEye, rightEye);
 
         //When
         BufferedImage result = service.creepify(startingImage, config);
@@ -54,8 +58,8 @@ public class CopyImageServiceTest {
         //Then
         assert result.equals(testImage);
 
-        verify(redEyeMock, atMost(1)).edit(startingImage);
-        verify(invertMock, never()).edit(startingImage);
+        verify(redEyeMock, atMost(1)).edit(startingImage, leftEye, rightEye);
+        verify(invertMock, never()).edit(startingImage, leftEye, rightEye);
     }
 
 }

@@ -12,8 +12,8 @@ import java.util.function.Predicate;
 @Configuration
 public class CreepyEditConfig {
 
-    private final CreepyImageEdit RED_EYE_EDIT = (img) -> img;
-    private final CreepyImageEdit INVERT_EDIT = (img) -> img;
+    private final CreepyImageEdit RED_EYE_EDIT = (img, leftEye, rightEye) -> img;
+    private final CreepyImageEdit INVERT_EDIT = (img, leftEye, rightEye) -> img;
 
     @Bean
     public Map<Predicate<CreepyImageConfig>, CreepyImageEdit> imageEdits() {

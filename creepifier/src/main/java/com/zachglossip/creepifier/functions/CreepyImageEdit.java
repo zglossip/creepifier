@@ -4,5 +4,5 @@ import java.awt.image.BufferedImage;
 
 @FunctionalInterface
 public interface CreepyImageEdit {
-    BufferedImage edit(BufferedImage image);
+    BufferedImage edit(BufferedImage image, Integer leftEye, Integer rightEye);
 }
